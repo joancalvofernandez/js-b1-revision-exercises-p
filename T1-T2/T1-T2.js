@@ -110,7 +110,61 @@ const library = [
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
 /********************* EX1 */
 
+class magicBook {
+  constructor(title, author, genre, yearPublished, available){
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.yearPublished = yearPublished;
+    this.available = available;
+
+    //afegir el segell místic als NOUS llibres màgics creats
+    this.magicSeal = magicBook.generateMagicSeal(title, author);
+  }
+
+
+
+  //mètode de classe
+
+  static generateMagicSeal(title, author) {
+        // Toma las primeras dos letras del título
+        const titlePart = title.substring(0, 2);
+        
+        // Toma las dos últimas letras del autor
+        const authorPart = author.substring(author.length - 2);
+        
+        // Combina, convierte a mayúsculas y agrega "MAGIC" al final
+        return (titlePart + authorPart).toUpperCase() + "MAGIC";
+    }
+
+  //metode d'instància
+
+  toggleAvailability(){
+
+    this.available = !this.available;
+  }
+
+}
+
 /********************* EX2 */
+
+// Encantamiento usando map() para transformar los libros a libros mágicos
+
+const mysticalBooks = library.map(libro => {
+    // Creamos una nueva instancia de magicBook con los datos del libro normal 
+    // para que los cree como nuevos y añada la propiedad magicseal.
+    const libroMagico = new magicBook(
+        libro.title,
+        libro.author,
+        libro.genre,
+        libro.yearPublished,
+        libro.available
+    );
+    
+    // Devolvemos solo el valor de la propiedad magicSeal
+    return libroMagico.magicSeal;
+});
+
 
 /********************* EX3 */
 
